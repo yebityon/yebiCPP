@@ -6,7 +6,6 @@ using ll = long long;
 #define erep(e, v) for (auto &&e : v)
 #define all(in) in.begin(), in.end()
 #define MP make_pair
-#define INF (sizeof(int) == 4 ? (int) 1e9 : (int) 1e18)
 #define EPS 0.0000000001
 using namespace std;
 template <class T, class S> auto cmin(T &a, const S &b) {
