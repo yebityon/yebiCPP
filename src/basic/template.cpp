@@ -13,7 +13,10 @@ template<class T, class S> void cmin(T &a, const S &b) { if (a > b)a = b; }
 template<class T, class S> void cmax(T &a, const S &b) { if (a < b)a = b; }
 template<typename Head, typename Value> auto vectors(const Head &head, const Value &v) { return vector<Value>(head, v); }
 template<typename Head, typename... Tail> auto vectors(Head x, Tail... tail) { auto inner = vectors(tail...); return vector<decltype(inner)>(x, inner); }
-template<class T> void join(T a){for(auto itr :a){ if(itr != *a.begin()) cout << " "; cout << itr;} }
+template <class T, class S> void join(T &a, S terminator) { for (auto itr = begin(a); itr != end(a); itr++) { if (itr != begin(a)) cout << terminator; cout << *itr;
+    }
+    cout << endl;
+}
 using ll  = long long;
 using ld  = long double;
 using pii = pair<int,int>;
