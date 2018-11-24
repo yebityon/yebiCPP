@@ -9,6 +9,6 @@ vector<int> primeFactors(int n) {
             i++;
         }
     }
-    v.push_back(n);
+    if(n != 1)v.push_back(n);
     return v;
 }
