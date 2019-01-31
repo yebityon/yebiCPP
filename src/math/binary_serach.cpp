@@ -9,7 +9,7 @@ auto cal(int mid){
     return v[mid]<= W;
 }
 auto mcal(int mid){
-    //W以上最大の数字をふ返すふ
+    //W以上最小の数字をふ返すふ
     return v[mid]>=W;
 }
 auto  minimize_bsearch(int imin,int imax){ //(imin,imax]
