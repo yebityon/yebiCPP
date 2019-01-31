@@ -1,30 +1,36 @@
-template<class T,class U>
-auto cal(int mid, T &v, U &value ){
-	//return the maximum index which v[index] <= value
-    return v[mid]<=value ;
-}
-template<class T,class U>
-auto mcal(int mid,T &v, U &value){
-	//return the minimum index which v[index] >= value
-    return v[mid]>=value;
-}
-template<class T,class U>
-auto  minimize_bsearch(int imin,int imax,T &v, U &value){ //(imin,imax]
+#include<fanctional>
+#include<iostream>
+// main(){};
+//
+//
+// verified@ 31/1/2019
+// AtC  https://atcoder.jp/contests/code-festival-2018-final-open/submissions/4131587
+
+
+template<class F>
+auto  minimize_bsearch(int imin,int imax,F &f){ //(imin,imax]
+    /*
+     return minimum index such that v[index] >= value
+     auto f(int mid) {return v[mid] >= value;}
+     */
     while(imax - imin > 1){
         int mid = imin + (imax - imin)/2;
-        if(mcal(mid,v,value)) imax = mid;
+        if(f(mid)) imax = mid;
         else imin = mid;
     }
     return imax; //imax is ans
 }
 
-template<class T,class U>
-auto  maximize_bsearch(int imin,int imax, T &v,U &value){ //[imin,imax)
+template<class F>
+auto  maximize_bsearch(int imin,int imax,F &f){ //[imin,imax)
+    /*
+     return maximum index such that v[index] <= value
+     auto f(int mid) {return v[mid] <= value;}
+     */
     while(imax - imin > 1){
         int mid = imin + (imax - imin)/2;
-        if(cal(mid,v,value)) imin = mid;
+        if(f(mid)) imin = mid;
         else imax = mid;
     }
     return imin; //imin is ans
 }
-
