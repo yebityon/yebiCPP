@@ -1,12 +1,12 @@
 template<class T,class U>
 auto cal(int mid, T &v, U &value ){
-    //return the maximum index which v[index] <= value
-    return v[mid].first<=value ;
+	//return the maximum index which v[index] <= value
+    return v[mid]<=value ;
 }
 template<class T,class U>
 auto mcal(int mid,T &v, U &value){
-		//return the minimum index which v[index] >= value
-    return v[mid].first>=value;
+	//return the minimum index which v[index] >= value
+    return v[mid]>=value;
 }
 template<class T,class U>
 auto  minimize_bsearch(int imin,int imax,T &v, U &value){ //(imin,imax]
