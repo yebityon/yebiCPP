@@ -1,5 +1,8 @@
-// Not verify yet.....
+//verifiyed @ contest: Codeforces Round #535 (Div. 3), problem: (B) Divisors of Two Integers
+
 #include<bits/stdc++.h>
+
+//main(){}
 auto divisors(int n){
     vector<int>v;
     for(int i = 1; i *  i <= n;i++){
@@ -9,6 +12,8 @@ auto divisors(int n){
             v.push_back(n /i);
     }
     sort(v.begin(),v.end());
+		//v.push_back(n)
+		// n itself also divisor.
     return v;
 }
 
