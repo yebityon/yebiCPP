@@ -1,3 +1,8 @@
+//#includ <bits/stdc++.h>
+//main(){}
+//verifyed  @https://codeforces.com/contest/1132/submission/50930638
+
+
 template <class T>
 class CumulativeSum{
 public:
@@ -13,7 +18,7 @@ public:
         }
     }
     //[l,r)
-    auto getsum(int l, int r){
+    auto query(int l, int r){
         if(r > 0) return (sum[r - 1] - (l == 0 ? 0 : sum[l - 1]));
         else return e;
         
