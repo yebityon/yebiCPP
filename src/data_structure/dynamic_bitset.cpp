@@ -1,42 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+template<class T>
 class dynamic_bitset {
-  private:
-    long long bit;
-    string sbit                = "";
-    unsigned long long bitsize = 0;
-
-  public:
-    dynamic_bitset(int _bit) : bit{_bit} {
-        for (int t = 1, mask = 2; bitsize == 0; t++, mask *= 2) {
-            if (mask - 1 >= bit) bitsize = t;
+private:
+    T bit_num;
+    string bit_string               = "";
+    unsigned int bit_size = 0;
+    vector<bool>bit_vector; //[0,bit_size)
+    // dynamic_bitset(8) should be :1000
+    
+public:
+    dynamic_bitset(T bit) : bit_num{bit} {
+        for (T t = T(1), mask = T(2); bit_size == 0; t++, mask *= T(2)) {
+            if (mask - T(1) >= bit) bit_size = (unsigned int)t;
         }
-        for (int i = 0; i < bitsize; i++) {
-            sbit = ((bit >> i & 1) == 1 ? "1" : "0") + sbit;
-        }
-    }
-    dynamic_bitset(int _bit, int bitrange) : bit{_bit} {
-        for (int t = 1, mask = 2; bitsize == 0; t++, mask *= 2) {
-            if (mask - 1 >= bit) bitsize = t;
-        }
-        for (int i = 0; i < bitrange; i++) {
-            sbit = (i < bitsize and ((bit >> i & 1) == 1) ? "1" : "0") + sbit;
+        bit_vector = vector<bool>(bit_size,false);
+        for (T i = T(0); i < bit_size; i++) {
+            bit_string = ((bit >> i & T(1)) == T(1) ? "1" : "0") + bit_string;
+            bit_vector[bit_size - 1 - i] = (bit >> i & T(1));
         }
     }
-    auto test(int _idx) {
-        assert(_idx < sbit.size() && "excution will be out of range");
-        return sbit[_idx] == '1';
+    dynamic_bitset(T bit, int bit_range) : bit_num{bit} {
+        for (T t = T(1), mask = T(2); bit_size == 0; t++, mask *= T(2)) {
+            if (mask - 1 >= bit) bit_size = (unsigned int)t;
+        }
+        bit_vector = vector<bool>(bit_range,false);
+        assert(bit_range  >=  bit_size and "out of range");
+        for (int i = 0; i < bit_range; i++) {
+            bit_string = (i < bit_size and ((bit >> i & T(1)) == 1) ? "1" : "0") + bit_string;
+        }
+        for(int i = 0; i < bit_size;++i){
+            bit_vector[bit_range - bit_size + bit_size - 1 -i] = (bit >> i & 1);
+        }
     }
-    void set(int _idx) {
-        assert(_idx < sbit.size() && "excution will be out of range");
-        sbit[_idx] = '1';
+    auto test(int idx) {
+        assert(idx < bit_string.size() && "excution will be out of range");
+        return bit_vector[idx];
     }
-    auto size() { return sbit.size(); }
+    void set(int idx) {
+        assert(idx < bit_string.size() && "excution will be out of range");
+        bit_string[idx] = '1';
+        bit_vector[idx] = true;;
+    }
+    auto size() { return bit_string.size(); }
     bool isAll() {
-        return accumulate(sbit.begin(), sbit.end(), true,
-            [](bool r, char c) { return r && c == '1'; });
+        return accumulate(bit_string.begin(), bit_string.end(), true,
+                          [](bool r, char c) { return r && c == '1'; });
     }
     bool none() {
-        return accumulate(sbit.begin(), sbit.end(), true,
-            [](bool r, char c) { return r && c == '0'; });
+        return accumulate(bit_string.begin(), bit_string.end(), true,
+                          [](bool r, char c) { return r && c == '0'; });
     }
-    auto to_string() { return sbit; }
+    auto to_string() { return bit_string; }
+    auto to_vector() { return bit_vector; }
+    auto stoi(string bit_str){
+        T res = 0;
+        for(int i = (int)bit_str.size() - 1; i >= 0;--i){
+            if(bit_str[i] == '1'){
+                res += (1LL << ((int)bit_str.size() - 1 - i));
+            }
+        }
+        return res;
+    }
+    auto vtoi(vector<bool>v){
+        T res =T(0);
+        for(int i = (int)v.size() - 1; i >= 0;--i){
+            res += (v[i] ? T(1) << ((int)v.size() -1 - i) : T(0));
+        }
+        return res;
+    }
 };
+
+int main(){
+    long long num;
+    cin >> num;
+    auto db = dynamic_bitset<long long>(num,1);
+    for(auto e : db.to_string()) cout << e;
+    cout << endl;
+    for(auto e : db.to_vector()) cout << e;
+    cout << endl;
+}
+
+
