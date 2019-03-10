@@ -42,14 +42,12 @@ public:
         bit_string[idx] = '1';
         bit_vector[idx] = true;;
     }
-    auto size() { return bit_string.size(); }
+    auto size() { return bit_vector.size(); }
     bool isAll() {
-        return accumulate(bit_string.begin(), bit_string.end(), true,
-                          [](bool r, char c) { return r && c == '1'; });
+        return accumulate(bit_vector.begin(), bit_vector.end(), true,[](bool r, bool e) { return r and e; });
     }
     bool none() {
-        return accumulate(bit_string.begin(), bit_string.end(), true,
-                          [](bool r, char c) { return r && c == '0'; });
+        return accumulate(bit_vector.begin(), bit_vector.end(), true,[](bool r, bool e) { return r and e; });
     }
     auto to_string() { return bit_string; }
     auto to_vector() { return bit_vector; }
@@ -72,13 +70,6 @@ public:
 };
 
 int main(){
-    long long num;
-    cin >> num;
-    auto db = dynamic_bitset<long long>(num,1);
-    for(auto e : db.to_string()) cout << e;
-    cout << endl;
-    for(auto e : db.to_vector()) cout << e;
-    cout << endl;
 }
 
 
