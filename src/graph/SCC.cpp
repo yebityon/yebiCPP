@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+// verifyed @AOJ http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3871163#1
+//
 template<typename T>
 class StronglyConnectedComponents{
     vector<vector<T>>edge,rev_edge,compressed_edge;
@@ -37,7 +39,7 @@ class StronglyConnectedComponents{
     
     void strcomp_construct(){
         compress_vertex();
-        compressed_edge = vector<vector<T>>(compress_size + 1);
+        compressed_edge = vector<vector<T>>(compress_size);
         for(int frm = 0; frm < edge.size(); ++frm)
             for(auto to : edge[frm]){
                 if(vcomp[frm] == vcomp[to])continue;
