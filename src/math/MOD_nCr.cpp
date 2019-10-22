@@ -1,8 +1,8 @@
-int MOD = 1000000000+7;
+constexpr int MOD = 1e9 + 7;
 template <class T> T modpow(T a, T b) {
-    if (b == 0) return 1;
+    if (b == 0) return T(1);
     if (b % 2 == 0) {
-        long long d = modppow(a, b / 2);
+        long long d = modpow(a, b / T(2));
         return (d * d) % MOD;
     } else {
         return (a * modpow(a, b - 1) % MOD);

@@ -20,5 +20,17 @@ void YN(bool f){ cout << (f ? "YES" : "NO");}
 void yn(bool f){ cout << (f ? "yes" : "no");}
 void YeNo(bool f) {cout << (f ? "Yes" : "No");}
 signed main(){
-	
+    int n; cin >> n;
+    vector<int>p(n);
+    vector<int>v(150002,0LL);
+    for(auto e : p) v[e]++;
+    for(int i = 1; i < v.size(); ++i){
+        if(v[i] == 0)continue;
+        if(i != 1 and v[i - 1] == 0){
+            v[i - 1]++; v[i]--;
+        }
+        if(i + 1 != v.size() and v[i] > )
+            }
+    cout << accumulate(all(v),0LL,[](int a, int b){return a += ( b > 0);})
+    << endl;
 }
