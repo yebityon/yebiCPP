@@ -3,7 +3,7 @@ class unionfind {
     vector<int> par, rank, size_;//速度ではなくメモリ効率を考えるならrankのかわりにsizeを使う
 public:
     unionfind(int n) :par(n), rank(n), size_(n, 1) {
-        iota(all(par), 0);
+        iota(par.begin(),par.end(), 0);
     }
     int find(int x) {
         if (par[x] == x)return x;
