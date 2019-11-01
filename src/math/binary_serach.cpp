@@ -12,10 +12,10 @@
  return minimum index such that v[index] >= value
  auto f(int mid) {return v[mid] >= value;}
  */
-template<class F>
-auto  minimize(int imin,int imax,F &f){
+template<class F, class T>
+auto  minimize(T imin,T imax,F &f){
     while(imax - imin > 1){
-        int mid = imin + (imax - imin)/2;
+        T mid = imin + (imax - imin)/2;
         if(f(mid)) imax = mid;
         else imin = mid;
     }
@@ -27,12 +27,13 @@ auto  minimize(int imin,int imax,F &f){
  return maximum index such that v[index] <= value
  auto f(int mid) {return v[mid] <= value;}
  */
-template<class F>
-auto  maximize(int imin,int imax,F &f){
+template<class F,class T>
+auto  maximize(T imin,T imax,F &f){
     while(imax - imin > 1){
-        int mid = imin + (imax - imin)/2;
+        T mid = imin + (imax - imin)/2;
         if(f(mid)) imin = mid;
         else imax = mid;
     }
     return imin;
 }
+
