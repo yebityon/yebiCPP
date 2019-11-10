@@ -1,8 +1,11 @@
 #include<bits/stdc++.h>
+using namespace std;
+
 
 //union-findのクラス
 class unionfind {
-    vector<int> par, rank, size_;//速度ではなくメモリ効率を考えるならrankのかわりにsizeを使う
+    vector<int> par, rank, size_;
+    //速度ではなくメモリ効率を考えるならrankのかわりにsizeを使う
 public:
     unionfind(int n) :par(n), rank(n), size_(n, 1) {
         iota(par.begin(),par.end(), 0);
