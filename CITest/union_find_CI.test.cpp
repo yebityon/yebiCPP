@@ -10,11 +10,10 @@ int main() {
     while (q --) {
         int com, x, y; cin >> com >> x >> y;
         if (com == 0) {
-            ut.unite(x, y);
+            uf.unite(x, y);
         } else if (com == 1) {
-            cout << ut.same(x, y) << endl;
+            cout << uf.same(x, y) << endl;
         }
     }
     return 0;
 }
-© 2019 GitHub, Inc
