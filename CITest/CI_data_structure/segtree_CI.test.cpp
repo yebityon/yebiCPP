@@ -15,10 +15,12 @@ int main(){
     int com; cin >> com;
     if(com == 0){
       Int x,y; cin >> x >> y;
-      sgt.update(--x,y);
+      --x;
+      sgt.update(x,y);
     } else {
       Int x,y; cin >> x >> y;
-      cout << sgt.query(--x,y) << endl;
+      --x;
+      cout << sgt.query(x,y) << endl;
     }
   } 
 }
