@@ -1,3 +1,6 @@
+#include<bits/stdc++.h>
+using namespace std;
+
 template<class T, class Func = function<T(T, T)>>
 class segtree {
     vector<T> obj;
