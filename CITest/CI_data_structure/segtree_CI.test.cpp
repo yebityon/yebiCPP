@@ -10,7 +10,7 @@ int main(){
   using Int = long long;
   vector<Int>v(N,0LL);
   Int e = 0LL;
-  auto segtree(v,e,[](Int a,INt b){return a + b});
+    auto sgt = segtree(v,e,[](Int a,Int b){return a + b;});
   for(int _ = 0; _ < Q; ++_){
     int com; cin >> com;
     if(com == 0){
