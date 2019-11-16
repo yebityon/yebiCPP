@@ -16,7 +16,7 @@ int main(){
     if(com == 0){
       Int x,y; cin >> x >> y;
       --x;
-      auto cp = sgt[x] + y:
+      auto cp = sgt[x] + y;
       sgt.update(x,cp);
     } else {
       Int x,y; cin >> x >> y;
