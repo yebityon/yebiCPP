@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include "src/data_structure/lazy_segtree.cpp"
+#define PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_H
     using namespace std;
     using Int = long long;
 
