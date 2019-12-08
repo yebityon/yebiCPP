@@ -40,7 +40,7 @@ private:
     }
     /* update k-node*/
     void flush(int k, int l, int r){
-        if(lazy[k] == 0){
+        if(lazy[k] == action_monoid.e){
             // There is no vlaue to propagate
         } else {
             obj[k] = action_monoid.g(obj[k],action_monoid.p(lazy[k],r - l));
