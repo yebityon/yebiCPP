@@ -1,16 +1,15 @@
+#define PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_H
 #include<bits/stdc++.h>
 #include "src/data_structure/lazy_segtree.cpp"
-#define PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_H
-    using namespace std;
-    using Int = long long;
-
-    /*
+using namespace std;
+using Int = long long;
+/*
            g : T × E -> T s.t apply E to T
            h : E × E -> merge E and E
            p : E × N -> p(a,b):= g(a,a,......a ),
                                    |__________|
                                         b
-    */
+*/
 auto Add = [](Int a, Int b ) {return a + b;};
 auto Mul = [](Int a, Int b ) {return a * b;};
 auto Max = [](Int a, Int b ) {return max(a,b);};
