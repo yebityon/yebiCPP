@@ -4,19 +4,6 @@
     using namespace std;
     using Int = long long;
 
-    template<class T, class Func = function<T(T,T)>>
-    struct foldMonoid{
-        T e;
-        const Func f;
-        foldMonoid(T e_, const Func f_) : e(e_),f(f_){};
-    };
-
-    template<class T, class Func = function<T(T,T)>>
-    struct ActionMonoid{
-        T e;
-        const Func g,h,p;
-        ActionMonoid(T e_,const Func g_, const Func h_, const Func p_) : e(e_),g(g_), h(h_), p(p_){};
-    };
     /*
            g : T × E -> T s.t apply E to T
            h : E × E -> merge E and E
