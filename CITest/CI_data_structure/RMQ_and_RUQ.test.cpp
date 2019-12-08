@@ -12,7 +12,7 @@ auto Max = [](Int a, Int b ) {return max(a,b);};
 auto Min = [](Int a, Int b ) {return min(a,b);};
 auto Left =  [](Int a, Int b) {return a;};
 auto Right = [](Int a, Int b) {return b;};
-
+Int e = (1LL << 31) - 1;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
