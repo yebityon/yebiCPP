@@ -93,7 +93,7 @@ public:
     : N(treesize_),fold_monoid(foldM), action_monoid(ActionM)
     {
         obj  = vector<T>(bufsize(N), init_);
-        lazy = vector<T>(N, action_monoid.e);
+        lazy = vector<T>(bufsize(N), action_monoid.e);
         
     }
     LazySegtree(vector<T>&vec, foldMonoid<T>foldM,
@@ -101,7 +101,7 @@ public:
     : N(vec.size()), fold_monoid(foldM), action_monoid(ActionM)
     {
         obj  = vector<T>(bufsize(N));
-        lazy = vector<T>(N,action_monoid.e);
+        lazy = vector<T>(bufsize(N),action_monoid.e);
         std::copy(vec.begin(),vec.end(),obj.begin() + offset);
         updateall();
     }
