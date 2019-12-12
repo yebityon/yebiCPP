@@ -38,6 +38,14 @@ private:
         offset = i - 1;
         return (i << 1) - 1;
     }
+    void updateall(int l = 0, int r = -1) {
+        if (r < 0)r = offset + 1;
+        l += offset, r += offset;
+        do {
+            l = (l - 1) >> 1, r = (r - 1) >> 1;
+            for (int i = l; i < r; i++)obj[i] = fold_monoid.f(obj[i * 2 + 1], obj[i * 2 + 2]);
+        } while (l);
+    }
     /* update k-node*/
     void flush(int k, int l, int r){
         if(lazy[k] == action_monoid.e){
@@ -85,8 +93,17 @@ public:
     : N(treesize_),fold_monoid(foldM), action_monoid(ActionM)
     {
         obj  = vector<T>(bufsize(N), init_);
-        lazy = vector<T>(bufsize(N), action_monoid.e);
+        lazy = vector<T>(N, action_monoid.e);
         
+    }
+    LazySegtree(vector<T>&vec, foldMonoid<T>foldM,
+    ActionMonoid<T>ActionM)
+    : N(vec.size()), fold_monoid(foldM), action_monoid(ActionM)
+    {
+        obj  = vecotr<T>(bufsize(N));
+        lazy = vector<T>(N,action_monoid.e);
+        std::copy(vec.begin(),vec.end(),obj.begin() + offset);
+        updateall();
     }
     
 };
