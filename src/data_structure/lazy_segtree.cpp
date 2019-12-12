@@ -100,7 +100,7 @@ public:
     ActionMonoid<T>ActionM)
     : N(vec.size()), fold_monoid(foldM), action_monoid(ActionM)
     {
-        obj  = vecotr<T>(bufsize(N));
+        obj  = vector<T>(bufsize(N));
         lazy = vector<T>(N,action_monoid.e);
         std::copy(vec.begin(),vec.end(),obj.begin() + offset);
         updateall();
