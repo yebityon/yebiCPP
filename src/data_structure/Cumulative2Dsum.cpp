@@ -3,6 +3,8 @@
 using namespace std;
 //verifyed @https://atcoder.jp/contests/abc106/submissions/4896005
 //main(){}
+fa
+
 
 template <class T>
 class Cumulative2DSum {
@@ -11,9 +13,10 @@ public:
     vector<vector<T>>sum;
     T e;
     Cumulative2DSum(vector<vector<T>>&v,T e) {
-        int W = v.size();
-        int H = v.front().size();
-        ++H , ++W; // why add ????
+        // W is x, H is y
+        int W = v.front().size();
+        int H = v.size();
+        ++H , ++W;
         sum = vector<vector<T>>(H,vector<T>(W,e));
         
         for(int i = 0; i < v.size(); ++i){
@@ -27,7 +30,7 @@ public:
             }
         }
     }
-    auto query(int sx,int sy,int gx,int gy){
-        sum[gx][gy] - sum[sx][gy] - sum[gx][sy] + sum[sx][sy];
+    T query(int sx,int sy,int gx,int gy){
+        return sum[gy][gx] - sum[sy][gx] - sum[gy][sx] + sum[sy][sx];
     }
 };
