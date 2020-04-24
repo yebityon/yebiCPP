@@ -3,9 +3,6 @@
 using namespace std;
 //verifyed @https://atcoder.jp/contests/abc106/submissions/4896005
 //main(){}
-
-template <class T>
-
 template <class T>
 class Cumulative2DSum {
     // query[sx,gx),[sy,gy)
