@@ -74,6 +74,3 @@ public:
         return point_set;
     }
 };
-signed main(){
-}
-
