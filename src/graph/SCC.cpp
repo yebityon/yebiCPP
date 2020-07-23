@@ -2,10 +2,10 @@
 using namespace std;
 // verifyed @AOJ http://judge.u-aizu.ac.jp/onlinejudge/review.jsp?rid=3871163#1
 //
-template<typename T>
+template<class T>
 class StronglyConnectedComponents{
-    vector<vector<T>>edge,rev_edge,compressed_edge;
-    vector<int>order,vcomp;
+    vector<vector<T>>edge,rev_edge,compressed_edge,point_set;
+    vector<int>order,vcomp,sort_order_vec;
     vector<bool>visit;
     int v_size = 0,compress_size = 0;
     void dfs(int v){
@@ -19,8 +19,8 @@ class StronglyConnectedComponents{
         for(auto nv : rev_edge[v])
             if(vcomp[nv] == -1) dfs_compress(nv);
     }
-    void rev_edge_build(){
-        for(int nv = 0; nv  < edge.size(); ++nv)
+    void build_rev_edge(){
+        for(int nv = 0; nv < edge.size(); ++nv)
             for(auto v : edge[nv])
                 rev_edge[v].push_back(nv);
     }
@@ -29,16 +29,16 @@ class StronglyConnectedComponents{
             if(not visit[v]) dfs(v);
     }
     void compress_vertex(){
-        reverse(order.begin(),order.end());
-        for(auto v : order){
+        for(auto itr = order.rbegin(); itr != order.rend();++itr ){
+            auto v = *itr;
             if(vcomp[v] == -1){
                 dfs_compress(v); compress_size++;
             }
         }
     }
-    
-    void strcomp_construct(){
+    void construct_strcomp(){
         compress_vertex();
+        //create compressed graph
         compressed_edge = vector<vector<T>>(compress_size);
         for(int frm = 0; frm < edge.size(); ++frm)
             for(auto to : edge[frm]){
@@ -46,19 +46,33 @@ class StronglyConnectedComponents{
                 compressed_edge[vcomp[frm]].push_back(vcomp[to]);
             }
     }
+    void construct_point_set(){
+        point_set = vector<vector<int>>(compress_size);
+        for(int v = 0; v < vcomp.size(); ++v){
+            point_set[vcomp[v]].push_back(v);
+        }
+    }
 public:
     StronglyConnectedComponents(vector<vector<T>>&e)
-    :v_size((int)e.size()),edge(e),order(e.size()),rev_edge(e.size()){};
-    
+    :v_size((int)e.size()),edge(e),order{},rev_edge(e.size()){};
+    int operator [](int v){
+        return vcomp[v];
+    }
     void build(){
-        rev_edge_build();
-        visit   = vector<bool>(v_size,false);
+        build_rev_edge();
+        visit = vector<bool>(v_size,false);
         popsort();
         vcomp = vector<int>(v_size,-1);
-        strcomp_construct();
+        construct_strcomp();
+        construct_point_set();
     }
     bool isSamePointSet(int v, int u){return vcomp[v] == vcomp[u];}
+    // scc_size return the size of compressed vertexs.
+    int scc_size(){return compress_size;}
     
+    vector<vector<int>> get_point_set(){
+        return point_set;
+    }
 };
 signed main(){
 }
