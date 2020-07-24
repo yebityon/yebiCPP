@@ -1,4 +1,4 @@
-#define PROBLEM http://http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C&lang=jp
+#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C&lang=jp
 #include<bits/stdc++.h>
 #include "src/graph/SCC.cpp"
 using namespace std;
