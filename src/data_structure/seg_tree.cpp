@@ -19,7 +19,7 @@ class segtree {
         else return updater(query(a, b, k * 2 + 1, l, (l + r) / 2), query(a, b, k * 2 + 2, (l + r) / 2, r));
     }
     int find_maximum_index_sub(int a, int b, T x, int k,int l, int r,const Func& f){
-        if(obj[k] > x || r <= a || b <= l) return -1;
+        if(!f(obj[k],x) || r <= a || b <= l) return -1;
         if(k >= offset) return k - offset;
         /* search * right *  subtree to find x*/
         int rv = find_maximum_index_sub(a,b,x,2 * k + 2, (l + r) / 2,r,f);
@@ -28,12 +28,12 @@ class segtree {
         return find_maximum_index_sub(a,b,x, 2 * k + 1, l, (l + r) / 2,f);
     }
     int find_minimum_index_sub(int a, int b, T x, int k, int l, int r,const Func& f){
-        if(f(obj[k],x) || r <= a || b <= l) return -1;
+        if(!f(obj[k],x) || r <= a || b <= l) return -1;
         if(k >= offset) return k - offset;
-        /* search * left *  subtree to find x*/
+        /* search * right *  subtree to find x*/
         int lv = find_minimum_index_sub(a,b,x, 2 * k + 1, l, (l + r) / 2,f);
         if(lv  !=  -1) return lv;
-        /* find minimum ( left ) index, so that left subtree will be searched only if  there is no elem in right subtree*/
+        /* find maximum ( right ) index, so that left subtree will be searched only if  there is no elem in right subtree*/
         return find_minimum_index_sub(a,b,x,2 * k + 2, (l + r) / 2,r,f);
     }
 public:
@@ -60,6 +60,7 @@ public:
     int find_maximum_index(int l, int r, T x,const Func& f) {
         return find_maximum_index_sub(l,r,x,0,0,offset + 1,f);
     }
+    // (l,r]
     int find_minimum_index(int l, int r, T x,const Func& f){
         return find_minimum_index_sub(l,r,x,0,0,offset + 1,f);
     }
@@ -87,4 +88,3 @@ public:
         update(id,x);
     }
 };
-
