@@ -1,8 +1,13 @@
-struct Edge{int to,cap,rev;};
+#include<bits/stdc++.h>
+using namespace std;
+
+constexpr int INF = 1e9;
+struct Edge{ int to,cap,rev;};
+
 class Dinic{//max flow
 public:
     int n;
-    vector<vector<Edge> >G;
+    vector<vector<Edge>>G;
     vector<int> level,iter;
     Dinic(int size): n(size),G(vector<vector<Edge>>(n)){};
     void add_Edge(int from, int to, int cap){
@@ -51,12 +56,6 @@ public:
         }
     };
 };
-
-
-signed main(){
-}
-
-
 
 
 
