@@ -1,8 +1,9 @@
-//#include<bits/stdc++.h>
-//using namespace std;
 //  verifyd @https://onlinejudge.u-aizu.ac.jp/solutions/problem/GRL_2_A/review/3982357/yebityon/C++14
 //
 //
+#include<bits/stdc++.h>
+using namespace std;
+#include"../../src/data_structure/union-find.hpp"
 template<class T>
 T Kruskal(const vector<vector<pair<T,T>>>&edge){
   T res = 0;
