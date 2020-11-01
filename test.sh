@@ -3,7 +3,7 @@ set -e
 oj --version
 
 CXX=${CXX:-g++}
-CXXFLAGS="${CXXFLAGS:--std=c++14 -O2 -Wall -g}"
+CXXFLAGS="${CXXFLAGS:--std=c++17 -O2 -Wall -g}"
 ulimit -s unlimited
 
 run() {
