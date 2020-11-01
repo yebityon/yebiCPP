@@ -1,6 +1,6 @@
 #define PROBLEM https://codeforces.com/contest/1265/problem/C
 
-#include "src/data_structure/CumulativeSum.cpp"
+#include "../../src/data_structure/CumulativeSum.cpp"
 
 #include<bits/stdc++.h>
 using namespace std;

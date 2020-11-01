@@ -4,17 +4,16 @@ using namespace std;
 #include "../../src/graph/art_point.cpp"
 
 signed main(){
-    int m;
+    int N,m;
     cin >> N >> m;
-		vector<vector<int>>edge;
+    vector<vector<int>>edge;
     edge.resize(N);
-    for(int i=0;i<m;i++){
+    for(int i = 0;i < m; i++){
         int s,t;
-        cin>>s>>t;
+        cin >> s >> t;
         edge[s].push_back(t);
         edge[t].push_back(s);
     }
-		auto ap = art_point(N,edge);
-    art_point();
-		ap.show_art_point();
+    auto ap = art_point(N,edge);
+    ap.show_art_point();
 }

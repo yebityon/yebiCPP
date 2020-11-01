@@ -1,6 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
 
-#include "src/data_structure/seg_tree.cpp"
+#include "../../src/data_structure/seg_tree.cpp"
 
 #include<iostream>
 using namespace std;

@@ -1,6 +1,6 @@
 #define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H&lang=jp
 #include<bits/stdc++.h>
-#include "src/data_structure/lazy_segtree.cpp"
+#include "../../src/data_structure/lazy_segtree.cpp"
 using namespace std;
 using Int = long long;
 /*
