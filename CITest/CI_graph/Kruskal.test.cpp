@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #include"../../src/graph/Kruskal.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A"
 int main(){
     int v,e; cin >> v >> e;
     vector<vector<pair<int,int>>>edge(v);
