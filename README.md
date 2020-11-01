@@ -1,5 +1,5 @@
 # yebi's library
-[![Build Status](https://travis-ci.org/yebityon/yebiCPP.svg?branch=master)](https://travis-ci.org/yebityon/yebiCPP)
+(https://github.com/yebityon/yebiCPP/workflows/verify/badge.svg)](https://github.com/yebityon/yebiCPP/actions) 
 
 Library for Competitive Programming written in C++.  
 Still under construction, I am welcome to your pull request!  
