@@ -1,4 +1,4 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B"
 
 #include "../../src/data_structure/seg_tree.cpp"
 

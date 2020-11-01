@@ -1,4 +1,4 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A&lang=jp
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A"
 #include<bits/stdc++.h>
 using namespace std;
 #include "../../src/graph/art_point.cpp"

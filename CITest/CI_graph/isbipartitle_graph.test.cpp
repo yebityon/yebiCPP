@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include "../../src/data_structure/isbipartitle_graph.cpp"
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2885
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/2885"
 using namespace std;
 bool solve(){
     int N,M;

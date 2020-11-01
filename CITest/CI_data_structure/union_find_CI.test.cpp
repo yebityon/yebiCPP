@@ -1,4 +1,4 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A"
 #include "../../src/data_structure/union-find.hpp"
 
 #include <iostream>

@@ -7,6 +7,8 @@ CXXFLAGS="${CXXFLAGS:--std=c++17 -O2 -Wall -g}"
 #ulimit -s 500000
 
 run() {
+    echo "!!function called"
+    rm -rf "test"
     file="$1"
     url="$(grep -o '^# *define \+PROBLEM \+\(https\?://.*\)' < "$file" | sed 's/.* http/http/')"
     dir=test/$(echo -n "$url" | md5sum | sed 's/ .*//')
@@ -22,7 +24,6 @@ run() {
         ${dir}/a.out
     fi
 }
-echo "hogehoge"
 if [ $# -eq 0 ] ; then
     for f in $(find . -name \*.test.cpp) ; do
         run $f

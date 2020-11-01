@@ -1,4 +1,4 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A&lang=jp
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_6_A"
 #include "../../src/graph/Dinic.cpp"
 
 #include<bits/stdc++.h>

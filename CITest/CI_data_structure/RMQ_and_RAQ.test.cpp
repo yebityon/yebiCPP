@@ -1,4 +1,4 @@
-#define PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H&lang=jp
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_H"
 #include<bits/stdc++.h>
 #include "../../src/data_structure/lazy_segtree.cpp"
 using namespace std;
