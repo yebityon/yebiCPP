@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
-//main(){};
-// not verify
+using namespace std;
 
-auto TopologicalSort(int n){
-    vector<int>v(n,false);
-    vector<int>out(n);
-    int idx = n-1;
+auto TopologicalSort(vector<vector<int>>&edge){
+    int N = edge.size();
+    vector<int>v(N,false);
+    vector<int>out(N);
+    int idx = N-1;
     function<void (int)>dfs = [&](int u) -> void{
         v[u] = true;
         for(int i = 0; i < edge[u].size();i++){

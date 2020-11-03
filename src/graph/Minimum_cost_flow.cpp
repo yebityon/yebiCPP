@@ -1,59 +1,80 @@
-struct Edge{
-    int to,cap,cost,rev;
-};
-class MCF{    //Minimum Cost Flow
-public:
-    using pii = pair<int, int>;
-    using ve =  vector<Edge>;
-    using vve = vector<ve>;
-    int n;
-    vve G;
-    vector<int> h,dist,prev,pree;
-    MCF(int size){
-        n=size;
-        G=vve(n);
-        h=dist=prev=pree=vector<int>(n);
+#include <bits/stdc++.h>
+using namespace std;
+
+template< class T>
+struct MCF {
+    const T INF;
+    
+    struct edge {
+        int to;
+        T cap;
+        T cost;
+        int rev;
+        bool isrev;
+    };
+    vector< vector< edge > > graph;
+    vector< T > potential, min_cost;
+    vector< int > prevv, preve;
+    
+    MCF(int V) : graph(V), INF(numeric_limits< T >::max()) {}
+    
+    void add_edge(int from, int to, T cap, T cost) {
+        graph[from].emplace_back((edge) {to, cap, cost, (int) graph[to].size(), false});
+        graph[to].emplace_back((edge) {from, 0, -cost, (int) graph[from].size() - 1, true});
     }
-    void add_edge(int s,int t,int ca,int co){
-        Edge e={t,ca,co,(int)G[t].size()};
-        G[s].push_back(e);
-        Edge ee={s,0,-co,(int)G[s].size()-1};
-        G[t].push_back(ee);
-    }
-    int mcf(int s,int t,int f){
-        int out=0;
-        h=vector<int>(n);
-        while(f>0){
-            priority_queue<pii,vector<pii> >q;
-            dist=vector<int>(n,INF);
-            dist[s]=0;
-            q.push(pii(0,s));
-            while(!q.empty()){
-                pii p=q.top();q.pop();
-                int v=p.second;
-                if(dist[v]<-p.first)continue;
-                for(int i=0;i<G[t].size();i++){
-                    Edge &e=G[v][i];
-                    if(e.cap>0&&dist[e.to]>dist[v]+e.cost+h[v]-h[e.to]){
-                        dist[e.to]=dist[v]+e.cost+h[v]-h[e.to];
-                        prev[e.to]=v;
-                        pree[e.to]=i;
-                        q.push(pii(-dist[e.to],e.to));
+    
+    T min_cost_flow(int s, int t, T f) {
+        int V = (int) graph.size();
+        T ret = 0;
+        using Pi = pair< T, int >;
+        priority_queue< Pi, vector< Pi >, greater< Pi > > que;
+        potential.assign(V, 0);
+        preve.assign(V, -1);
+        prevv.assign(V, -1);
+        
+        while(f > 0) {
+            min_cost.assign(V, INF);
+            que.emplace(0, s);
+            min_cost[s] = 0;
+            while(!que.empty()) {
+                Pi p = que.top();
+                que.pop();
+                if(min_cost[p.second] < p.first) continue;
+                for(int i = 0; i < graph[p.second].size(); i++) {
+                    edge &e = graph[p.second][i];
+                    T nextCost = min_cost[p.second] + e.cost + potential[p.second] - potential[e.to];
+                    if(e.cap > 0 && min_cost[e.to] > nextCost) {
+                        min_cost[e.to] = nextCost;
+                        prevv[e.to] = p.second, preve[e.to] = i;
+                        que.emplace(min_cost[e.to], e.to);
                     }
                 }
             }
-            if(dist[t]==INF)return -1;
-            for(int i=0;i<n;i++)h[i]+=dist[i];
-            int d=f;
-            for(int v=t;v!=s;v=prev[v])d=min(d,G[prev[v]][pree[v]].cap);
-            f-=d;
-            out+=d*h[t];
-            for(int v=t;v!=s;v=prev[v]){
-                Edge &e=G[prev[v]][pree[v]];
-                e.cap-=d;
-                G[v][e.rev].cap+=d;
+            if(min_cost[t] == INF) return -1;
+            for(int v = 0; v < V; v++) potential[v] += min_cost[v];
+            T addflow = f;
+            for(int v = t; v != s; v = prevv[v]) {
+                addflow = min(addflow, graph[prevv[v]][preve[v]].cap);
+            }
+            f -= addflow;
+            ret += addflow * potential[t];
+            for(int v = t; v != s; v = prevv[v]) {
+                edge &e = graph[prevv[v]][preve[v]];
+                e.cap -= addflow;
+                graph[v][e.rev].cap += addflow;
             }
         }
-        return out;
+        return ret;
+    }
+    
+    void output() {
+        for(int i = 0; i < graph.size(); i++) {
+            for(auto &e : graph[i]) {
+                if(e.isrev) continue;
+                auto &rev_e = graph[e.to][e.rev];
+                cout << i << "->" << e.to << " (flow: " << rev_e.cap << "/" << rev_e.cap + e.cap << ")" << endl;
+            }
+        }
     }
 };
+

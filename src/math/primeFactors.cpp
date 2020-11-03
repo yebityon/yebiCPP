@@ -31,6 +31,4 @@ set<T> primeFactors( const vector<T>& vec){
     }
     return res;
 }
-int main(){
-}
 

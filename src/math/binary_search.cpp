@@ -1,4 +1,4 @@
-#include<fanctional>
+#include<functional>
 #include<iostream>
 // main(){};
 //
