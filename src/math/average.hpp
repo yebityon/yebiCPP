@@ -1,5 +1,3 @@
-//Not verify yet
-//[first, last)
 #include <bits/stdc++.h>
 using namespace std;
 
