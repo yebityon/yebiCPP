@@ -50,7 +50,6 @@ ReflowComments: true
 TabWidth: 4
 AccessModifierOffset: -2
 AlignAfterOpenBracket: DontAlign
-ConstructorInitializerIndentWidth: 4
 IndentCaseLabels: true
 # Clang 6 で追加
 # IndentPPDirectives: None

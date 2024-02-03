@@ -24,11 +24,3 @@ inline int out(vector<T>&v,string c = " "){
         if(i) cout << c; cout << v[i];
     } cout << el;return 0;
 }
-inline void solve(){
-    return;
-}
-signed main(){
-    fast_io();
-    int Q = 1; cin >> Q;
-    while(Q--){solve();}
-}
