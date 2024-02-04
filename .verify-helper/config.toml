@@ -1,3 +1,0 @@
-[[languages.cpp.environments]]
-CXX = "g++-8"
-CXXFLAGS = ["-std=c++17", "-Wall", "-g", "-fsanitize=undefined", "-D_GLIBCXX_DEBUG"]
