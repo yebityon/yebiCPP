@@ -7,8 +7,7 @@ using namespace std;
  2*2*3*5 = 60;
  1 -> 0;
  */
-template<typename T>
-vector<T> factorize(T n) {
+template <typename T> vector<T> factorize(T n) {
     vector<T> v;
     T i = 2;
     while (i * i <= n) {
@@ -19,16 +18,12 @@ vector<T> factorize(T n) {
             i++;
         }
     }
-    if(n != 1)v.push_back(n);
+    if (n != 1) v.push_back(n);
     return v;
 };
-template<typename T>
-set<T> primeFactors( const vector<T>& vec){
+template <typename T> set<T> primeFactors(const vector<T> &vec) {
     /* vecotor must be factolized*/
     set<T> res;
-    for(auto e : vec){
-        res.insert(e);
-    }
+    for (auto e : vec) { res.insert(e); }
     return res;
 }
-
