@@ -25,21 +25,21 @@ vector<T> TopologicalSortBfs(vector<vector<T>> &edge) {
     const size_t N = edge.size();
     vector<T> in(N,T(0)), out;
     queue<T> que;
-    // 辞書順最小ならこれを使う
+     // Sort in lexicographically smallest order
     // priority_queue<T, vector<T>, greater<T>> que;
     for (auto &v : edge) {
         for (auto &u : v) { in[u]++; }
     }
     for (T i = 0; i < in.size(); i++) {
-        if (in[i] == 0) que.push(i);
+        if (in[i] == 0) que.emplace(i);
     }
     while (!que.empty()) {
-        T u = que.front();
+        T u = que.front(); // or T u = que.top(); 
         que.pop();
-        out.push_back(u);
+        out.emplace_back(u);
         for (auto &v : edge[u]) {
             in[v]--;
-            if (in[v] == 0) que.push(v);
+            if (in[v] == 0) que.emplace(v);
         }
     }
     // out.size() != N なら閉路が存在する
