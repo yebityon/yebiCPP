@@ -18,7 +18,7 @@ template <typename T> class MexSet {
   public:
     MexSet(T _inf = 1e9) : inf(_inf) {
         S.emplace(-inf, -inf);
-        S.emplace(inf, inf;)
+        S.emplace(inf, inf);
     }
 
     bool contains(T x) {
@@ -51,6 +51,7 @@ template <typename T> class MexSet {
             /* [6, 9], 11, [13, 15] */
             S.insert(make_pair(x, x));
         }
+        return true;
     }
 
     bool erase(int x) {
@@ -60,29 +61,28 @@ template <typename T> class MexSet {
         auto it           = prev(nit);
         const auto [l, u] = *it;
         if (l == x && u == x) /* 完全に区間が一致 */ {
-            s.erase(it);
+            S.erase(it);
         } else if (l == x) {
             int nl = l + 1;
-            s.erase(it);
-            s.insert(make_pair(nl, u));
+            S.erase(it);
+            S.insert(make_pair(nl, u));
         } else if (l < x
                    && x < u) /* ある区間内にxが含まれる場合、下のように分割 */ {
             // [l, x - 1], [x + 1, u]
-            s.erase(it);
-            s.insert(make_pair(l, x - 1));
-            s.insert(make_pair(x + 1, u));
-        } else if (x == u) /* 加減が一致するとき */ {
-            s.erase(it);
-            s.insert(make_pair(l, u - 1));
+            S.erase(it);
+            S.insert(make_pair(l, x - 1));
+            S.insert(make_pair(x + 1, u));
+        } else if (x == u) /* 下限が一致するとき */ {
+            S.erase(it);
+            S.insert(make_pair(l, u - 1));
         } else {
-            1 / 0;
-            s.erase(it);
+            S.erase(it);
         }
         return true;
     }
 
-    T mex(T x) {
-        const auto itr    = s.lower_bound(make_pair(x + 1, x + 1));
+    T mex(T x = 0) {
+        const auto itr    = S.lower_bound(make_pair(x + 1, x + 1));
         const auto [l, u] = *prev(itr);
         if (l <= x && x <= u) {
             return u + 1;
