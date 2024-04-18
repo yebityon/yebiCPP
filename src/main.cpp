@@ -1,16 +1,9 @@
-// @verified https://atcoder.jp/contests/abc330/submissions/52491791
 #include <bits/stdc++.h>
 using namespace std;
 using Int = long long;
 
 constexpr Int inf = (LLONG_MAX >> 1);
 
-/**
- * @brief MexSetを使う前によく考えること
- * 1. すべての入力が1e5の数しかこないとき、mexは1e5以下の数になること
- * 2. eraseは自作したメソッドであること
- * 3. intとlong longの違いに気をつけること
- */
 template <typename T> class MexSet {
   private:
     set<pair<T, T>> S;
@@ -42,7 +35,7 @@ template <typename T> class MexSet {
             S.insert(make_pair(pl, u));
         } else if (pu + 1 == x) {
             /* [6, 9], 10, [12, 15] */
-            S.erase(pitr);
+            S.erase(itr);
             S.insert(make_pair(pl, x));
         } else if (x + 1 == l) {
             /* [6, 9], 11, [12, 15] */
@@ -92,3 +85,33 @@ template <typename T> class MexSet {
         }
     }
 };
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int N, Q;
+    cin >> N >> Q;
+
+    vector<int> A(N);
+    map<int, int> cnt;
+    MexSet<Int> mex(inf);
+    for (auto &a : A) {
+        cin >> a;
+        cnt[a]++;
+        if (cnt[a] == 1) mex.insert(a);
+    }
+
+    while (Q-- > 0) {
+        int i, x;
+        cin >> i >> x;
+        --i;
+        int prev = A[i];
+        A[i]     = x;
+        cnt[x]++;
+        if (cnt[x] == 1) mex.insert(x);
+        if (cnt[prev] == 1) mex.erase(prev);
+        cnt[prev]--;
+        cout << mex.mex() << endl;
+    }
+}
