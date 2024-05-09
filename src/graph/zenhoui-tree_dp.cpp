@@ -50,6 +50,64 @@ void reRooting(int v, int pv, Int pval = 0) {
     }
 }
 
+
+template <class T>
+class ReRooting {
+    public:
+        ReRooting(vector<vector<T>>edge) : edge(edge) {
+            ans = vector<T>(edge.size());
+            dist = vector<T>(edge.size());
+        }
+        reRooting(T root = 0) {
+            
+        }
+
+        T dfs1(int v, int p) {
+            T res = mi;
+            for (auto nv : edge[v]) {
+                if (nv == p) continue;
+                dist[nv] = dfs1(nv, v);
+                res = merge(res, f(dist[nv], v));
+            }
+            return g(res, v);
+        }
+
+        void dfs2(int v, int p, T pval){
+            int deg = edge[v].size();
+            vector<T>lsum(deg + 1, mi), rsum(deg + 1, mi);
+            for (int i = 0; i < deg; ++i) {
+                int nv = edge[v][i];
+                if (nv == p) {
+                    dist[nv] = pval;
+                }
+                lsum[i + 1] = merge(lsum[i], f(dist[nv], v));
+            }
+            for (int i = deg - 1; i >= 0; --i) {
+                int nv = edge[v][i];
+                if (nv == p) {
+                    dist[nv] = pval;
+                }
+                rsum[i] = merge(rsum[i + 1], f(dist[nv], v));
+            }
+            ans[v] = g(rsum[0], v);
+            for (int i = 0; i < deg; ++i) {
+                int nv = edge[v][i];
+                if (nv == p) {
+                    dist[nv] = pval;
+                }
+                T val = merge(lsum[i], rsum[i + 1]);
+                dfs2(nv, v, g(val, v));
+            }
+        }
+        
+    private:
+        vector<vector<T>>edge;
+        vector<T>ans, dist;
+        function<T(T, T)> merge;
+        function<T(T, int)> f,g;
+        T mi = T(0);
+};
+
 int main() {
     Int N;
     cin >> N;
