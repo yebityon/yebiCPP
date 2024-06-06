@@ -4,7 +4,7 @@
           "name": "Linux",
           "includePath": ["${workspaceFolder}/**"],
           "defines": [],
-          "compilerPath": "/opt/homebrew/bin/g++-13",
+          "compilerPath": "/usr/bin/g++",
           "cppStandard": "gnu++14",
           "cStandard": "c17",
           "intelliSenseMode": "macos-gcc-arm64"
